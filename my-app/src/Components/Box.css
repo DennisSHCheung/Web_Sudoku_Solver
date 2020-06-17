@@ -1,0 +1,39 @@
+.box {
+    width: 38px;
+    height: 38px;
+    background-color: rgb(40, 37, 37);
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(40, 37, 37);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.firstRow {
+    margin-top: 5px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    height: 42px;
+    align-items: center;
+    margin-bottom: 3.5px;
+}
+
+.thirdRow {
+    margin-bottom: 5px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    padding-right: 5px;
+}
+
+.value {
+    color : white;
+}
+
