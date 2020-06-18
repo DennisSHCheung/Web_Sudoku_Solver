@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
 import './Box.css';
 
-class BoxComponent extends Component {
-    constructor(props) {
-        super(props);
-        const { value, id } = props;
-        this.state = {
-            value: value,
-            id: id
-        }
-    }
+const BoxComponent = (props) => {
 
-    render() {
-        if (this.state.value === 0) {
-            this.state.value = " ";
-        }
+    const { value, id } = props;
     
-        return (
-            <div className="box" onClick={() => this.props.onClick(this.state.id)}>
-                <p className="value">{this.state.value}</p>
-            </div>        
-        );
-    }
+    return (
+        <div className="box" onClick={() => props.onClick(id)}>
+            <p className="value">{value}</p>
+        </div>        
+    );
+
 }
 
 export default BoxComponent;

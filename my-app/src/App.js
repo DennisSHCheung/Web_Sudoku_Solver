@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import BoxComponent from './Components/BoxComponent';
 import Grid from './Components/Grid';
 import './App.css';
 

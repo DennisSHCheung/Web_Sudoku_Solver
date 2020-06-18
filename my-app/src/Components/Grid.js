@@ -25,7 +25,6 @@ class Grid extends Component {
     }
 
     constructGrid = () => {
-        console.log("here");
         const grid = this.state.numbers.map((row, i) => {
             let count = 0; // count the number of elements in each row
             let className = "row";
@@ -36,17 +35,27 @@ class Grid extends Component {
                 <div className={className}>
                     {
                         row.map((item, j) => {
-                            const id = i * 9 + j;
-                            let largeBox = (
+                            
+                            // Leave an empty box if 0
+                            if (item == 0) {
+                                item = " ";
+                            }
+
+                            const id = i * 9 + j; // Convert 2d position to 1d
+                            const largeBox = (
                                 <div style={{marginLeft: '4px'}}>
                                     <BoxComponent value={item} id={id} onClick={this.onClick} />
                                 </div>
                             );
-                            let normalBox = (
+                            const normalBox = (
                                 <div style={{marginLeft: '2px'}}>
                                     <BoxComponent value={item} id={id} onClick={this.onClick} />
                                 </div>
                             );
+
+                            if (i === 0 && j === 0) {
+                                console.log(normalBox);
+                            }
 
                             if (j === count) { // Every third column needs to have a larger gap
                                 count += 3;
@@ -67,23 +76,19 @@ class Grid extends Component {
             this.setState({ selectedId: -1 });
         } else {
             this.setState({ selectedId: id });
-            console.log(id);
         }
     }
 
     onKeyPress = (event) => {
-        if (this.state.selectedId !== -1) {
+        if (this.state.selectedId !== -1) { // Only update numbers if a box is selected
             let tempArray = this.state.numbers;
             tempArray[Math.floor(this.state.selectedId/9)][(this.state.selectedId%9)] = event.key;            
             this.setState({ numbers: tempArray });
-            console.log(this.state.numbers[0][0]);
             this.constructGrid();
-            console.log(event.key);
         }
     }
 
-    render() {    
-        console.log("after");
+    render() {   
         return (
             <div className="column" onKeyPress={this.onKeyPress} tabIndex="0">
                 { this.state.gameGrid }
