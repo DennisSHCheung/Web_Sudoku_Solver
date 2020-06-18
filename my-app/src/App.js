@@ -7,9 +7,13 @@ class App extends Component {
 		super();		
 	}
 
+	onClick = (e) => {
+		console.log('here');
+	} 
+
 	render() {
 		return (
-			<div className="page">
+			<div className="page" onClick={(e) => this.onClick(e)}>
 				<div>
 					<h1> SUDOKU SOLVER</h1>
 				</div>

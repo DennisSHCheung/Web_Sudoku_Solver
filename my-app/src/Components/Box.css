@@ -11,6 +11,10 @@
     align-items: center;
 }
 
+.highlightedBox {
+    border-color: lime;
+}
+
 .firstRow {
     margin-top: 5px;
 }
