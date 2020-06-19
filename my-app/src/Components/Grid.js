@@ -2,24 +2,30 @@ import React, { Component } from 'react';
 import BoxComponent from './BoxComponent';
 import './Box.css';
 const algorithm = require('../Algorithm');
-//var solve = require('../Algorithm.js');
 
 class Grid extends Component {
     constructor(props) {
         super(props);
     }
 
-    onKeyPress = (event) => {
-        const key = parseInt(event.key);
+    // Triggered when a box is selected and a key is detected
+    onKeyDown = (event) => {
+        let key = event.key;
+        // Backspace also clears a box
+        if (key === "Backspace") {
+            key = "0";
+        }
         // Prevent bizarre values
+        key = parseInt(key);        
         if (isNaN(key)) {
             return;
         }
+        
         if (this.props.selectedId !== -1) { // Only update numbers if a box is selected
             const row = Math.floor(this.props.selectedId / 9);
             const col = this.props.selectedId % 9;
             // Ensure the entered key is a valid move
-            if (algorithm.checkMove(this.props.numbers, row, col, key) || (key === 0)) {
+            if (algorithm.isInputCorrect(this.props.numbers, row, col, key) || (key === 0)) {
                 this.props.setNumbersElement(row, col, key);
             }
         }
@@ -44,20 +50,20 @@ class Grid extends Component {
                             }
 
                             // Set border-color to lime if a box is selected
-                            let className = "box";
+                            let boxClassName = "box";
                             if (this.props.selectedId === (i * 9 + j)) {
-                                className += " highlightedBox";
+                                boxClassName += " highlightedBox";
                             }
 
                             const id = i * 9 + j; // Convert 2d position to 1d
                             const largeBox = (
                                 <div style={{marginLeft: '4px'}}>
-                                    <BoxComponent value={item} id={id} onClick={this.props.onBoxClick} className={className} />
+                                    <BoxComponent value={item} id={id} onClick={this.props.onBoxClick} className={boxClassName} />
                                 </div>
                             );
                             const normalBox = (
                                 <div style={{marginLeft: '2px'}}>
-                                    <BoxComponent value={item} id={id} onClick={this.props.onBoxClick} className={className} />
+                                    <BoxComponent value={item} id={id} onClick={this.props.onBoxClick} className={boxClassName} />
                                 </div>
                             );
 
@@ -77,7 +83,7 @@ class Grid extends Component {
 
     render() {   
         return (
-            <div className="column" onKeyPress={this.onKeyPress} tabIndex="0">
+            <div className="column" onKeyDown={this.onKeyDown} tabIndex="0">
                 {this.getGrid()}
             </div>
         );

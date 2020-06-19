@@ -21,10 +21,12 @@ class App extends Component {
 		}	
 	}
 
+	// Triggered when a click outside of the grid is detected
 	onClick = () => {
 		this.setState({ selectedId: -1 });
 	} 
 
+	// Triggered when a click within the 9x9 grid is detected
 	onBoxClick = (id, event) => {
         if (this.state.selectedId === id) {
             this.setState({ selectedId: -1 });
@@ -34,10 +36,12 @@ class App extends Component {
         event.stopPropagation();
 	}
 	
+	// Triggered when the solve button is clicked
 	onSolveButtonClick = () => {
 		const result = algorithm.solve(this.state.numbers);
 	}
 
+	// Called when a valid input is received
 	setNumbersElement = (row, col, num) => {
 		let tempArray = this.state.numbers;
 		tempArray[row][col] = num;

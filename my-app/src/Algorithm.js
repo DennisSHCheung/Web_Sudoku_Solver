@@ -74,5 +74,5 @@ const solve = (numbers) => {
 
 module.exports = {
     solve: solve,
-    checkMove: isInputCorrect
+    isInputCorrect: isInputCorrect
 }
