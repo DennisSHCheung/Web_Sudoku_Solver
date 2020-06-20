@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import BoxComponent from './BoxComponent';
-import './Box.css';
+import BoxComponent from './Box/BoxComponent';
 const algorithm = require('../Algorithm');
 
 class Grid extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     // Triggered when a box is selected and a key is detected
     onKeyDown = (event) => {
         let key = event.key;
@@ -46,7 +41,7 @@ class Grid extends Component {
                             
                             // Leave an empty box if 0
                             if (item === 0) {
-                                item = " ";
+                                item = null;
                             }
 
                             // Set border-color to lime if a box is selected
@@ -58,12 +53,12 @@ class Grid extends Component {
                             const id = i * 9 + j; // Convert 2d position to 1d
                             const largeBox = (
                                 <div style={{marginLeft: '4px'}}>
-                                    <BoxComponent value={item} id={id} onClick={this.props.onBoxClick} className={boxClassName} />
+                                    <BoxComponent key={(i+1) *j} value={item} id={id} onClick={this.props.onBoxClick} className={boxClassName} />
                                 </div>
                             );
                             const normalBox = (
                                 <div style={{marginLeft: '2px'}}>
-                                    <BoxComponent value={item} id={id} onClick={this.props.onBoxClick} className={boxClassName} />
+                                    <BoxComponent key={(i+1) *j} value={item} id={id} onClick={this.props.onBoxClick} className={boxClassName} />
                                 </div>
                             );
 
