@@ -11,6 +11,12 @@
     align-items: center;
 }
 
+.box p {
+    animation-duration: .3s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+}
+
 .highlightedBox {
     border-color: lime;
 }
@@ -46,3 +52,12 @@
     color : white;
 }
 
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }

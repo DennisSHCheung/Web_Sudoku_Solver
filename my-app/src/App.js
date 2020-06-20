@@ -38,7 +38,7 @@ class App extends Component {
 	
 	// Triggered when the solve button is clicked
 	onSolveButtonClick = () => {
-		const result = algorithm.solve(this.state.numbers);
+		algorithm.solve(this.state.numbers);
 	}
 
 	// Called when a valid input is received
@@ -51,9 +51,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="page" onClick={this.onClick}>
-				<div>
-					<h1> SUDOKU SOLVER</h1>
-				</div>
+				<h1> SUDOKU SOLVER</h1>
 				<div className="content">
 					<div className="gridBorder">
 						<div style={{marginTop:'5px'}}></div>
@@ -65,7 +63,7 @@ class App extends Component {
 						/>						
 					</div>
 					<div>
-						<button onClick={this.onSolveButtonClick}></button>
+						<button className="solve" onClick={this.onSolveButtonClick}>SOLVE</button>
 					</div>
 				</div>
 			</div>
